@@ -71,7 +71,7 @@ export default function App() {
                 link: "https://github.com/samueladegnan/seeo-aws-orchestrator",
               },
               {
-                title: "Secure Embedded \"Asset Tracker\" with AI Anomaly Detection",
+                title: "Secure Embedded \"Asset Tracker\" with AI Anomaly Detection & Encrypted Shell",
                 tech: "C/C++, STM32 V8, I2C/SPI, TensorFlow Lite for Microcontrollers",
                 overview: "Build a secure data-logging device using an STM32 board that monitors environmental sensors and runs a local, lightweight anomaly detection model.",
                 value: "Demonstrates ability to handle low-level hardware, implement security protocols, and integrate AI in resource-constrained environments.",
@@ -83,13 +83,6 @@ export default function App() {
                 overview: "Create a custom GitHub Action or CI pipeline component that uses an LLM to perform \"Context-Aware\" code reviews, specifically looking for secure coding violations in C/C++.",
                 value: "Highlights experience with DevOps, secure coding, and the ability to leverage AI to solve enterprise-level developer efficiency problems.",
                 link: "https://github.com/samueladegnan/ai-cicd-security-guardrail",
-              },
-              {
-                title: "Encrypted \"Serial Protocol\" Shell",
-                tech: "C/C++, UART, OpenSSL / Stream Ciphers",
-                overview: "Develop a secure command-line interface (CLI) for your microcontroller that requires authentication and transmits data over an encrypted tunnel.",
-                value: "Directly mirrors your work in mission-critical communication systems and cryptography.",
-                link: "https://github.com/samueladegnan/encrypted-uart-shell",
               }
             ].map((project, index) => (
               <div key={index} className="bg-slate-900/50 p-8 rounded-xl border border-slate-800 hover:border-cyan-900/50 transition-all shadow-lg group relative">
