@@ -73,8 +73,8 @@ export default function App() {
               {
                 title: "Secure Embedded \"Asset Tracker\" with AI Anomaly Detection & Encrypted Shell",
                 tech: "C/C++, STM32 V8, I2C/SPI, TensorFlow Lite for Microcontrollers",
-                overview: "Build a secure data-logging device using an STM32 board that monitors environmental sensors and runs a local, lightweight anomaly detection model.",
-                value: "Demonstrates ability to handle low-level hardware, implement security protocols, and integrate AI in resource-constrained environments.",
+                overview: "Build a secure data-logging device using an STM32 board that monitors environmental sensors and runs a local, lightweight anomaly detection model, with a secure command-line interface (CLI) that requires challenge-response authentication and transmits debugging logs over an encrypted tunnel.",
+                value: "Demonstrates ability to handle low-level hardware, implement security protocols, execute cryptographic handshakes, and integrate AI in resource-constrained environments.",
                 link: "https://github.com/samueladegnan/stm32-secure-asset-tracker",
               },
               {
@@ -121,7 +121,7 @@ export default function App() {
               <li>Serve as the designated Cyber Security Champion, proactively evaluating system security posture and distilling complex risk assessments into actionable status reports for senior leadership.</li>
               <li>Integrate AI coding assistants into daily development workflows for debugging and code generation, accelerating delivery by 66% and compressing a three-week test development cycle into one week.</li>
               <li>Architect secure AWS infrastructure utilizing EC2 instances, custom AMIs, and AWS Secrets Manager, while also engineering embedded firmware targeting STM32 V8 boards.</li>
-              <li>Own end-to-end release management via InstallShield and Conan packages, reduce static analysis defect backlogs using SonarQube, and maintain Jenkins and Bitbucket CI/CD pipelines.</li>
+              <li>Own end-to-end release management and Conan packages, reduce static analysis defect backlogs using SonarQube, and maintain Jenkins and Bitbucket CI/CD pipelines.</li>
             </ul>
           </div>
         </section>
@@ -152,7 +152,7 @@ export default function App() {
                 </tr>
                 <tr className="hover:bg-slate-800/50 transition-colors">
                   <td className="py-4 px-6 font-semibold text-slate-200">DevOps & CI/CD</td>
-                  <td className="py-4 px-6 font-mono text-sm text-cyan-200">Jenkins, Bitbucket CI, Azure DevOps, Git, CMake, Conan, InstallShield, SonarQube</td>
+                  <td className="py-4 px-6 font-mono text-sm text-cyan-200">Jenkins, Bitbucket CI, Azure DevOps, Git, CMake, Conan, SonarQube</td>
                 </tr>
                 <tr className="hover:bg-slate-800/50 transition-colors">
                   <td className="py-4 px-6 font-semibold text-slate-200">Embedded Systems</td>
