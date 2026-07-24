@@ -176,7 +176,7 @@ export default function App() {
 
           <div className="flex-shrink-0 flex justify-center mt-4 md:mt-12 w-full md:w-auto mb-8 md:mb-0">
             <div className="relative">
-              <div className="absolute inset-0 bg-cyan-200 dark:bg-cyan-900/20 rounded-full scale-110 -z-10 blur-md motion-reduce:blur-none" />
+              <div className="absolute inset-0 bg-cyan-200 dark:bg-cyan-900/20 rounded-full scale-110 -z-10 blur-md motion-reduce:blur-none" aria-hidden="true" />
               <img
                 src={profilePic}
                 alt="Sam Degnan headshot"
