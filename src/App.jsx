@@ -34,14 +34,24 @@ export default function App() {
         <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
           {/* Left Side: Text Content */}
           <div className="flex-1 w-full text-center md:text-left">
-            <h2 className="text-2xl font-bold text-slate-100 border-b border-slate-800 pb-3 mb-6 uppercase tracking-wider text-sm text-left">About Me</h2>
-            <p className="text-lg leading-relaxed text-slate-300 bg-slate-900/50 p-8 rounded-xl border border-slate-800 shadow-xl text-left">
-              I am a Software Engineer holding a B.S. in Software Engineering from Iowa State University of Science and Technology. 
-              I currently design and maintain cryptographic software for first-responder communication systems at Motorola Solutions, ensuring strict compliance with security standards like FIPS. 
-              I heavily leverage AI coding assistants to architect secure AWS infrastructure and engineer embedded firmware, meaningfully accelerating project delivery by over 60%. 
-              I am relocating to Austin, TX and am actively seeking new engineering roles where I can apply my expertise in secure enterprise architectures.
-            </p>
-          </div>
+           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-100 border-b border-slate-800 pb-3 mb-6 text-left">
+             About Me
+           </h2>
+           
+           <div className="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-800 shadow-xl text-left text-slate-300 text-base md:text-lg leading-relaxed space-y-4">
+             <p>
+               Software Engineer (B.S. Iowa State) building FIPS-compliant cryptographic software for first-responder communications at Motorola Solutions.
+             </p>
+             
+             <p>
+               I leverage AI tools to architect secure AWS infrastructure and embedded firmware, accelerating delivery times by over 75%.
+             </p>
+             
+             <p className="pt-2 text-slate-200 font-medium">
+               Relocating to Austin, TX and actively seeking new engineering opportunities.
+             </p>
+           </div>
+         </div>
 
           {/* Right Side: Profile Photo */}
           <div className="flex-shrink-0 flex justify-center mt-4 md:mt-12 w-full md:w-auto mb-8 md:mb-0">
