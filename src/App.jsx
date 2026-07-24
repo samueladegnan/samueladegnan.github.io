@@ -75,22 +75,22 @@ export default function App() {
             {[
               {
                 title: "Secure Ephemeral Environment Orchestrator (SEEO)",
-                tech: "Ruby on Rails, AWS (EC2, EBS, Custom AMIs, Secrets Manager)",
-                overview: "An internal DevOps tool that automates the deployment of secure, TTL-bound AWS infrastructure.",
-                value: "Proves full-stack orchestration capabilities and strict adherence to zero-trust credential management.",
+                tech: "Ruby on Rails, AWS (EC2, EBS, Secrets Manager, DynamoDB), SQLite, Solid Queue, Terraform, Docker, GitHub Actions",
+                overview: "An internal DevOps tool that automates the deployment of secure, TTL-bound AWS infrastructure through a REST API and web dashboard.",
+                value: "Proves full-stack cloud orchestration capabilities, zero-trust credential management, background job scheduling with Solid Queue, and infrastructure-as-code automation.",
                 link: "https://samueladegnan.github.io/seeo-aws-orchestrator/",
               },
               {
                 title: "Zero-Knowledge Fitness Platform",
-                tech: "React, Web Crypto API (AES-256-GCM), Argon2, Node.js, PostgreSQL, Docker",
+                tech: "HTML5, Vanilla JavaScript, Web Crypto API (AES-256-GCM), Argon2id, Node.js, Express, PostgreSQL, Docker",
                 overview: "A privacy-first, full-stack strength training platform utilizing a Zero-Knowledge Architecture that encrypts all exercise logs client-side before persisting data to the cloud.",
                 value: "Demonstrates full-stack mastery blended with end-to-end cryptography. Proves the ability to design privacy-preserving cloud architectures and build secure, production-ready systems.",
                 link: "https://samueladegnan.github.io/zk-fitness-platform/",
               },
               {
                 title: "AI-Driven \"CI/CD Guardrail\" for Secure Coding",
-                tech: "Python, Jenkins/GitLab Duo, LLM API, Docker, SonarQube",
-                overview: "Create a custom GitHub Action or CI pipeline component that uses an LLM to perform \"Context-Aware\" code reviews, specifically looking for secure coding violations in C/C++.",
+                tech: "Python, GitHub Actions, Docker, Jenkins, LLM APIs",
+                overview: "A reusable GitHub Action / CI component that uses an LLM to triage static-analysis findings for C/C++, mapping CWEs to compliance controls and flagging real security risks.",
                 value: "Highlights experience with DevOps, secure coding, and the ability to leverage AI to solve enterprise-level developer efficiency problems.",
                 link: "https://samueladegnan.github.io/ai-cicd-security-guardrail/",
               }
