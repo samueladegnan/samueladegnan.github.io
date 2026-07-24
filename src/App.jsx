@@ -40,7 +40,7 @@ export default function App() {
            
            <div className="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-800 shadow-xl text-left text-slate-300 text-base md:text-lg leading-relaxed space-y-4">
              <p>
-               Software Engineer (B.S. Iowa State) building FIPS-compliant cryptographic software for first-responder communications at Motorola Solutions.
+               Software Engineer (B.S. Iowa State) building cryptographic software for first-responder communications at Motorola Solutions.
              </p>
              
              <p>
