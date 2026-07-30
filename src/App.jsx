@@ -399,7 +399,7 @@ export default function App() {
               />
               <img
                 src={profilePic}
-                alt="Sam Degnan headshot"
+                alt="Sam Degnan - Software Engineer at Motorola Solutions"
                 className="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full object-cover shadow-2xl border-4 border-slate-200 dark:border-slate-800"
                 loading="eager"
               />
@@ -420,7 +420,7 @@ export default function App() {
                 key={project.title}
                 className="relative bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-cyan-400 dark:hover:border-cyan-600 hover:shadow-xl transition-all shadow-lg group"
               >
-                <a
+                  <a
                   href={project.link}
                   aria-label={`Open ${project.title}`}
                   className="absolute top-6 right-6 md:top-8 md:right-8 p-2 -m-2 text-slate-500 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:rounded-sm transition-colors"
