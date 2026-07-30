@@ -262,7 +262,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto">
           <div className="flex justify-between items-center gap-4">
             <div className="flex-1 min-w-0">
-              <h1 className="text-xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight truncate">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight pb-0.5">
                 Sam Degnan
               </h1>
               <p className="hidden md:block text-sm lg:text-base text-cyan-700 dark:text-cyan-400 mt-1 font-medium tracking-wide truncate">
@@ -422,9 +422,7 @@ export default function App() {
               >
                 <a
                   href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open ${project.title} (opens in new tab)`}
+                  aria-label={`Open ${project.title}`}
                   className="absolute top-6 right-6 md:top-8 md:right-8 p-2 -m-2 text-slate-500 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:rounded-sm transition-colors"
                 >
                   <ExternalLinkIcon />
