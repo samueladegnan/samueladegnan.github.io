@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samueladegnan.github.io/sitemap.xml
