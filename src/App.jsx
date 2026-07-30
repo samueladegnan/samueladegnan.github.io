@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import profilePic from './assets/headshot.jpg';
 
 /**
@@ -63,6 +63,39 @@ const ExternalLinkIcon = (props) => (
   </svg>
 );
 
+const MenuIcon = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    {...props}
+  >
+    <line x1="4" x2="20" y1="6" y2="6" />
+    <line x1="4" x2="20" y1="12" y2="12" />
+    <line x1="4" x2="20" y1="18" y2="18" />
+  </svg>
+);
+
+const XIcon = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    {...props}
+  >
+    <path d="M18 6 6 18" />
+    <path d="m6 6 12 12" />
+  </svg>
+);
+
 const projects = [
   {
     title: 'Zero-Knowledge Fitness Platform',
@@ -120,12 +153,58 @@ const skills = [
   },
 ];
 
+const contactItems = [
+  {
+    href: 'mailto:samueladegnan@gmail.com',
+    label: 'Send email to samueladegnan@gmail.com',
+    short: 'Email',
+    full: 'samueladegnan@gmail.com',
+    icon: '✉️',
+  },
+  {
+    href: 'https://linkedin.com/in/sam-degnan/',
+    label: 'Visit LinkedIn profile (opens in new tab)',
+    short: 'LinkedIn',
+    full: 'linkedin.com/in/sam-degnan',
+    icon: '💼',
+    external: true,
+  },
+  {
+    href: 'https://github.com/samueladegnan',
+    label: 'Visit GitHub profile (opens in new tab)',
+    short: 'GitHub',
+    full: 'github.com/samueladegnan',
+    icon: '💻',
+    external: true,
+  },
+];
+
+const ContactLink = ({ item, onClick, className = '', ...rest }) => (
+  <a
+    href={item.href}
+    target={item.external ? '_blank' : undefined}
+    rel={item.external ? 'noopener noreferrer' : undefined}
+    onClick={onClick}
+    className={`flex items-center gap-2 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 rounded-sm transition-colors ${className}`}
+    aria-label={item.label}
+    {...rest}
+  >
+    <span className="text-xl" aria-hidden="true">{item.icon}</span>
+    <span className="md:hidden lg:inline text-sm">{item.full}</span>
+    <span className="hidden md:inline lg:hidden text-sm">{item.short}</span>
+  </a>
+);
+
 export default function App() {
   const [isDark, setIsDark] = useState(() =>
     typeof document !== 'undefined'
       ? document.documentElement.classList.contains('dark')
       : false,
   );
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
+  const wasMenuOpen = useRef(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -138,6 +217,38 @@ export default function App() {
     }
   }, [isDark]);
 
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') setIsMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleClick = (e) => {
+      const isInsideMenu = menuRef.current?.contains(e.target);
+      const isHamburger = hamburgerRef.current?.contains(e.target);
+      if (!isInsideMenu && !isHamburger) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (isMenuOpen && menuRef.current) {
+      const firstLink = menuRef.current.querySelector('a');
+      firstLink?.focus();
+    }
+    if (!isMenuOpen && wasMenuOpen.current && hamburgerRef.current) {
+      hamburgerRef.current.focus();
+    }
+    wasMenuOpen.current = isMenuOpen;
+  }, [isMenuOpen]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-700 dark:bg-slate-950 dark:text-slate-300 font-sans selection:bg-cyan-200 selection:text-cyan-900 dark:selection:bg-cyan-900 dark:selection:text-cyan-50 print:bg-white print:text-slate-900">
       <a
@@ -147,68 +258,101 @@ export default function App() {
         Skip to main content
       </a>
 
-      <header className="bg-white/80 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 py-5 md:py-8 px-6 sm:px-12 lg:px-24 backdrop-blur-sm sticky top-0 z-40 print:static print:bg-white print:text-slate-900">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
-              Sam Degnan
-            </h1>
-            <p className="text-base md:text-lg text-cyan-700 dark:text-cyan-400 mt-1 md:mt-2 font-medium tracking-wide">
-              Software Engineer | Mission-Critical Systems & AI Integration
-            </p>
+      <header className="bg-white/85 dark:bg-slate-900/95 border-b border-slate-200 dark:border-slate-800 py-3 md:py-5 px-4 sm:px-12 lg:px-24 backdrop-blur-md sticky top-0 z-40 print:static print:bg-white print:text-slate-900 shadow-sm dark:shadow-none">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex justify-between items-center gap-4">
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight truncate">
+                Sam Degnan
+              </h1>
+              <p className="hidden md:block text-sm lg:text-base text-cyan-700 dark:text-cyan-400 mt-1 font-medium tracking-wide truncate">
+                Software Engineer | Mission-Critical Systems & AI Integration
+              </p>
+              <p className="md:hidden text-xs text-cyan-700 dark:text-cyan-400 mt-0.5 font-medium tracking-wide truncate">
+                Software Engineer
+              </p>
+            </div>
+
+            <div className="hidden md:flex items-center gap-4 shrink-0">
+              <nav
+                aria-label="Contact links"
+                className="flex flex-col items-start gap-1 text-sm font-medium"
+              >
+                {contactItems.map((item) => (
+                  <ContactLink key={item.short} item={item} className="py-0.5" />
+                ))}
+              </nav>
+              <div
+                className="hidden lg:block h-8 w-px bg-slate-300 dark:bg-slate-700"
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                onClick={() => setIsDark((prev) => !prev)}
+                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+                className="p-3 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0"
+              >
+                {isDark ? (
+                  <SunIcon className="w-5 h-5" />
+                ) : (
+                  <MoonIcon className="w-5 h-5" />
+                )}
+              </button>
+            </div>
+
+            <div className="flex md:hidden items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsDark((prev) => !prev)}
+                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+                className="p-3 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                {isDark ? (
+                  <SunIcon className="w-5 h-5" />
+                ) : (
+                  <MoonIcon className="w-5 h-5" />
+                )}
+              </button>
+              <button
+                ref={hamburgerRef}
+                type="button"
+                onClick={() => setIsMenuOpen((prev) => !prev)}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
+                aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                className="p-3 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                {isMenuOpen ? (
+                  <XIcon className="w-5 h-5" />
+                ) : (
+                  <MenuIcon className="w-5 h-5" />
+                )}
+              </button>
+            </div>
           </div>
-          <div className="flex items-center gap-4 w-full md:w-auto">
+
+          <div
+            id="mobile-menu"
+            ref={menuRef}
+            aria-hidden={!isMenuOpen}
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+              isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
             <nav
-              aria-label="Contact links"
-              className="flex flex-col gap-3 text-sm font-medium"
+              aria-label="Contact links mobile"
+              className="flex flex-col gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 font-medium"
             >
-              <a
-                href="mailto:samueladegnan@gmail.com"
-                className="flex items-center gap-2 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 rounded-sm transition-colors"
-                aria-label="Send email to samueladegnan@gmail.com"
-              >
-                <span className="text-xl" aria-hidden="true">
-                  ✉️
-                </span>
-                samueladegnan@gmail.com
-              </a>
-              <a
-                href="https://linkedin.com/in/sam-degnan/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 rounded-sm transition-colors"
-                aria-label="Visit LinkedIn profile (opens in new tab)"
-              >
-                <span className="text-xl" aria-hidden="true">
-                  💼
-                </span>
-                linkedin.com/in/sam-degnan
-              </a>
-              <a
-                href="https://github.com/samueladegnan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 rounded-sm transition-colors"
-                aria-label="Visit GitHub profile (opens in new tab)"
-              >
-                <span className="text-xl" aria-hidden="true">
-                  💻
-                </span>
-                github.com/samueladegnan
-              </a>
+              {contactItems.map((item) => (
+                <ContactLink
+                  key={item.short}
+                  item={item}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="py-3 text-base"
+                  tabIndex={isMenuOpen ? 0 : -1}
+                />
+              ))}
             </nav>
-            <button
-              type="button"
-              onClick={() => setIsDark((prev) => !prev)}
-              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="ml-auto md:ml-2 p-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 transition-colors shrink-0"
-            >
-              {isDark ? (
-                <SunIcon className="w-5 h-5" />
-              ) : (
-                <MoonIcon className="w-5 h-5" />
-              )}
-            </button>
           </div>
         </div>
       </header>
@@ -284,7 +428,8 @@ export default function App() {
                   className="absolute top-6 right-6 md:top-8 md:right-8 p-2 -m-2 text-slate-500 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:rounded-sm transition-colors"
                 >
                   <ExternalLinkIcon />
-                </a>                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 pr-12">
+                </a>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 pr-12">
                   {project.title}
                 </h3>
                 <p className="text-xs md:text-sm font-mono text-cyan-800 dark:text-cyan-300 mt-2 mb-4 bg-cyan-100 dark:bg-cyan-950/40 inline-block px-3 py-1 rounded">
