@@ -1,573 +1,249 @@
-import React, { useEffect, useRef, useState } from 'react';
-import profilePic from './assets/headshot.jpg';
-
-/**
- * Icon components
- * All icons are purely decorative and therefore set aria-hidden="true".
- */
-const MoonIcon = (props) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-    {...props}
-  >
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
-  </svg>
-);
-
-const SunIcon = (props) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-    {...props}
-  >
-    <circle cx="12" cy="12" r="5" />
-    <line x1="12" y1="1" x2="12" y2="3" />
-    <line x1="12" y1="21" x2="12" y2="23" />
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-    <line x1="1" y1="12" x2="3" y2="12" />
-    <line x1="21" y1="12" x2="23" y2="12" />
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-  </svg>
-);
-
-const ExternalLinkIcon = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-    {...props}
-  >
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-    <polyline points="15 3 21 3 21 9" />
-    <line x1="10" y1="14" x2="21" y2="3" />
-  </svg>
-);
-
-const MenuIcon = (props) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-    {...props}
-  >
-    <line x1="4" x2="20" y1="6" y2="6" />
-    <line x1="4" x2="20" y1="12" y2="12" />
-    <line x1="4" x2="20" y1="18" y2="18" />
-  </svg>
-);
-
-const XIcon = (props) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-    {...props}
-  >
-    <path d="M18 6 6 18" />
-    <path d="m6 6 12 12" />
-  </svg>
-);
+import { useEffect, useRef, useState } from 'react'
+import profilePic from './assets/headshot.jpg'
 
 const projects = [
   {
+    number: '01',
+    featured: true,
+    category: 'Privacy engineering',
     title: 'Zero-Knowledge Fitness Platform',
-    tech: 'Vanilla JavaScript, Web Crypto API, Argon2id, ML-KEM/ML-DSA, Node.js, Express, PostgreSQL, PWA',
-    overview:
-      'A privacy-first workout tracker that encrypts every log client-side with AES-256-GCM before it reaches the server. ML-DSA-65 authenticates users, ML-KEM-768 wraps per-sync keys, and the app works offline as an installable PWA.',
-    value:
-      'Demonstrates production cryptography, zero-trust architecture, and a buildless SPA whose CI pipeline is triaged by the same AI guardrail used across the portfolio.',
+    summary: 'Browser-first fitness tracking with client-owned workout data and keys.',
+    notes: [
+      ['Build', 'IndexedDB, encrypted sync, ML-DSA login, ML-KEM key encapsulation, and Groth16.'],
+      ['Boundary', 'The proof covers the workout summary and payload binding, not encryption.'],
+    ],
+    stack: ['Vanilla JavaScript', 'PWA', 'IndexedDB', 'Web Crypto API', 'Argon2id', 'HKDF', 'AES-256-GCM', 'ML-KEM-768', 'ML-DSA-65', 'Circom', 'Groth16', 'Poseidon', 'Node.js', 'Express', 'PostgreSQL'],
     link: 'https://samueladegnan.github.io/zk-fitness-platform/',
+    repo: 'https://github.com/samueladegnan/zk-fitness-platform',
+    tone: 'coral',
+    proofLabel: 'Stack',
+    proof: 'Vanilla JavaScript, Web Crypto, Circom, Poseidon, Node, Express, and PostgreSQL.',
   },
   {
-    title: 'Secure Ephemeral Environment Orchestrator (SEEO)',
-    tech: 'Ruby 3.3, Rails 7, AWS SDK, Terraform, React, Docker, GitHub Actions',
-    overview:
-      'A full-stack DevOps tool for spinning up secure, TTL-bound AWS infrastructure on demand. A Rails API enforces RBAC and OPA policies, a React dashboard streams real-time state, and a reusable CI guardrail triages Brakeman findings on every push.',
-    value:
-      'Shows end-to-end cloud architecture, policy-as-code, real-time UI design, and the discipline of shipping a security guardrail as a reusable cross-repo action.',
+    number: '02',
+    category: 'Multi-cloud operations',
+    title: 'SEEO Multi-Cloud Orchestrator',
+    summary: 'Short-lived environment control across AWS, Azure, Google Cloud, and OCI.',
+    notes: [
+      ['Build', 'Rails, React, provider adapters, RBAC, OPA, Terraform, and TTL cleanup.'],
+      ['Scope', 'Demo uses mock mode with no cloud credentials or billable resources.'],
+    ],
+    stack: ['Ruby on Rails', 'React', 'AWS', 'Azure', 'Google Cloud', 'OCI', 'Terraform', 'OPA/Rego'],
     link: 'https://samueladegnan.github.io/seeo-aws-orchestrator/',
+    repo: 'https://github.com/samueladegnan/seeo-aws-orchestrator',
+    tone: 'blue',
+    proof: 'Mock mode, Terraform, persisted state, retries, and CI security artifacts.',
   },
   {
-    title: 'AI-Driven CI/CD Security Guardrail',
-    tech: 'Python, GitHub Actions, Docker, SARIF, OpenAI/Anthropic/Gemini, OPA/Rego',
-    overview:
-      'A reusable GitHub Action and Docker image that parses static-analysis reports (SARIF, SonarQube, cppcheck), enriches findings with compliance context, and uses an LLM to separate real risks from false positives.',
-    value:
-      'Highlights secure-coding discipline, DevOps tooling, and pragmatic AI integration. It now runs in the CI pipelines of SEEO and ZK Fitness, triaging Brakeman and ESLint findings before they reach production.',
+    number: '03',
+    category: 'Developer tooling',
+    title: 'AI CI/CD Security Guardrail',
+    summary: 'Python CLI and GitHub Action for reviewable security findings in CI.',
+    notes: [
+      ['Build', 'Parses SARIF, SonarQube, and cppcheck with context, mapping, and OPA gates.'],
+      ['Scope', 'A triage layer, not a SAST replacement or security guarantee.'],
+    ],
+    stack: ['Python', 'GitHub Actions', 'SARIF', 'OPA/Rego', 'Docker', 'SQLite'],
     link: 'https://samueladegnan.github.io/ai-cicd-security-guardrail/',
+    repo: 'https://github.com/samueladegnan/ai-cicd-security-guardrail',
+    tone: 'green',
+    proof: 'Fixtures, browser demo, mock provider, SARIF output, and CI checks.',
   },
-];
+]
 
-const skills = [
-  {
-    category: 'Application Security & Cryptography',
-    items: 'Zero-Knowledge / Zero-Trust Architecture, Post-Quantum Cryptography (ML-KEM/ML-DSA), AES-256-GCM, Argon2id, Web Crypto API, OPA/Rego, Key Management, Code Signing',
-  },
-  {
-    category: 'Cloud Architecture & Infrastructure',
-    items: 'AWS (EC2, EBS, Secrets Manager, IAM, DynamoDB), Terraform, Docker, Linux/UNIX, PostgreSQL',
-  },
-  {
-    category: 'AI Integration & Automation',
-    items: 'LLM Tooling (OpenAI/Anthropic/Gemini), AI-Driven Static Analysis, Prompt Engineering, Output Validation',
-  },
-  {
-    category: 'Core Systems & Languages',
-    items: 'C/C++, Python, Ruby on Rails, Java, JavaScript (Node.js, React, PWA), Bash, SQL',
-  },
-  {
-    category: 'DevOps & Build Engineering',
-    items: 'GitHub Actions, Jenkins, Bitbucket CI, Azure DevOps, GitLab, CMake, Conan, SonarQube, Klocwork, SARIF, cppcheck',
-  },
-  {
-    category: 'Embedded Systems',
-    items: 'RTOS, STM32 V8, BeagleBone, Lauterbach JTAG, I2C/SPI, UART',
-  },
-];
+const skillGroups = [
+  { label: 'Languages and application code', items: ['C/C++', 'Python', 'Ruby on Rails', 'JavaScript', 'React', 'Node.js', 'SQL', 'Bash'] },
+  { label: 'Security and trust boundaries', items: ['AES-256-GCM', 'Argon2id', 'HKDF', 'ML-KEM-768', 'ML-DSA-65', 'Web Crypto API', 'Circom', 'Groth16', 'Poseidon', 'OPA/Rego', 'IAM'] },
+  { label: 'Cloud and delivery', items: ['AWS', 'Azure', 'Google Cloud', 'OCI', 'Terraform', 'Docker', 'GitHub Actions', 'Jenkins'] },
+  { label: 'Embedded and build systems', items: ['RTOS', 'STM32', 'BeagleBone', 'JTAG', 'I2C/SPI', 'UART', 'CMake', 'Conan'] },
+]
 
 const contactItems = [
-  {
-    href: 'mailto:samueladegnan@gmail.com',
-    label: 'Send email to samueladegnan@gmail.com',
-    short: 'Email',
-    full: 'samueladegnan@gmail.com',
-    icon: '✉️',
-  },
-  {
-    href: 'https://linkedin.com/in/sam-degnan/',
-    label: 'Visit LinkedIn profile (opens in new tab)',
-    short: 'LinkedIn',
-    full: 'linkedin.com/in/sam-degnan',
-    icon: '💼',
-    external: true,
-  },
-  {
-    href: 'https://github.com/samueladegnan',
-    label: 'Visit GitHub profile (opens in new tab)',
-    short: 'GitHub',
-    full: 'github.com/samueladegnan',
-    icon: '💻',
-    external: true,
-  },
-];
+  { href: 'mailto:samueladegnan@gmail.com', label: 'Email Sam Degnan', text: 'Email', external: false },
+  { href: 'https://linkedin.com/in/sam-degnan/', label: 'Open Sam Degnan on LinkedIn', text: 'LinkedIn', external: true },
+  { href: 'https://github.com/samueladegnan', label: 'Open Sam Degnan on GitHub', text: 'GitHub', external: true },
+  { href: '/Sam-Degnan-Resume.pdf', label: 'Download Sam Degnan resume', text: 'Resume', external: false, download: true },
+]
 
-const ContactLink = ({ item, onClick, className = '', ...rest }) => (
-  <a
-    href={item.href}
-    target={item.external ? '_blank' : undefined}
-    rel={item.external ? 'noopener noreferrer' : undefined}
-    onClick={onClick}
-    className={`flex items-center gap-2 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 rounded-sm transition-colors ${className}`}
-    aria-label={item.label}
-    {...rest}
-  >
-    <span className="text-xl" aria-hidden="true">{item.icon}</span>
-    <span className="md:hidden lg:inline text-sm">{item.full}</span>
-    <span className="hidden md:inline lg:hidden text-sm">{item.short}</span>
-  </a>
-);
+function ArrowIcon({ className = '' }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h13" /><path d="m13 6 6 6-6 6" /></svg>
+}
+
+function ExternalIcon({ className = '' }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg>
+}
+
+function MoonIcon({ className = '' }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" /></svg>
+}
+
+function SunIcon({ className = '' }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
+}
+
+function MenuIcon({ className = '' }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+}
+
+function CloseIcon({ className = '' }) {
+  return <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+}
+
+function getInitialTheme() {
+  if (typeof window === 'undefined') return false
+
+  try {
+    const storedTheme = window.localStorage.getItem('theme')
+    if (storedTheme) return storedTheme === 'dark'
+  } catch {
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false
+  }
+
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false
+}
+
+function ContactLinks({ mobile = false, onNavigate, isOpen = true }) {
+  return (
+    <div className={mobile ? 'mobile-contact-links' : 'contact-links'}>
+      {contactItems.map((item) => (
+        <a key={item.text} href={item.href} download={item.download ? 'Sam-Degnan-Resume.pdf' : undefined} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined} onClick={onNavigate} aria-label={`${item.label}${item.external ? ', opens in a new tab' : ''}`} tabIndex={mobile && !isOpen ? -1 : undefined}>
+          {item.text}
+          {item.external && <ExternalIcon className="icon-xs" />}
+        </a>
+      ))}
+    </div>
+  )
+}
+
+function SectionIntro({ id, label, title, description }) {
+  return (
+    <div className="section-intro">
+      <p className="section-label">{label}</p>
+      <h2 id={id}>{title}</h2>
+      {description && <p>{description}</p>}
+    </div>
+  )
+}
+
+function ProjectCard({ project }) {
+  return (    <article className={`project-card project-card-${project.tone} ${project.featured ? 'project-card-featured' : ''}`}>
+      <div className="project-card-heading">
+        <div className="project-index"><span>{project.number}</span><span>{project.category}</span></div>
+        <h3>{project.title}</h3>
+        <p className="project-summary">{project.summary}</p>
+      </div>
+      <div className="project-notes">
+        {project.notes.map(([label, text]) => <div className="project-note" key={label}><span>{label}</span><p>{text}</p></div>)}
+      </div>
+      <p className="project-proof"><span>{project.proofLabel || 'Evidence'}</span>{project.proof}</p>
+      <div className="project-card-footer">
+        <div className="tag-list" aria-label={`${project.title} technology stack`}>
+          {project.stack.map((item) => <span className="tag" key={item}>{item}</span>)}
+        </div>
+        <div className="project-links">
+          <a className="project-link" href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Read ${project.title} project page, opens in a new tab`}>
+            View project <ExternalIcon className="icon-sm" />
+          </a>
+          <a className="project-source-link" href={project.repo} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source code on GitHub, opens in a new tab`}>
+            Source <ExternalIcon className="icon-xs" />
+          </a>
+        </div>
+      </div>
+    </article>
+  )
+}
 
 export default function App() {
-  const [isDark, setIsDark] = useState(() =>
-    typeof document !== 'undefined'
-      ? document.documentElement.classList.contains('dark')
-      : false,
-  );
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
-  const hamburgerRef = useRef(null);
-  const wasMenuOpen = useRef(false);
+  const [isDark, setIsDark] = useState(getInitialTheme)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuButtonRef = useRef(null)
+  const wasMenuOpen = useRef(false)
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+    document.documentElement.classList.toggle('dark', isDark)
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#151719' : '#f7f4ed')
+    try {
+      window.localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    } catch {
+      // Theme preference is optional when storage is unavailable
     }
-  }, [isDark]);
+  }, [isDark])
 
   useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === 'Escape') setIsMenuOpen(false);
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, []);
-
-  useEffect(() => {
-    if (!isMenuOpen) return;
-    const handleClick = (e) => {
-      const isInsideMenu = menuRef.current?.contains(e.target);
-      const isHamburger = hamburgerRef.current?.contains(e.target);
-      if (!isInsideMenu && !isHamburger) {
-        setIsMenuOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [isMenuOpen]);
-
-  useEffect(() => {
-    if (isMenuOpen && menuRef.current) {
-      const firstLink = menuRef.current.querySelector('a');
-      firstLink?.focus();
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setIsMenuOpen(false)
     }
-    if (!isMenuOpen && wasMenuOpen.current && hamburgerRef.current) {
-      hamburgerRef.current.focus();
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
+  useEffect(() => {
+    if (!isMenuOpen && wasMenuOpen.current) menuButtonRef.current?.focus()
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+    wasMenuOpen.current = isMenuOpen
+    return () => {
+      document.body.style.overflow = ''
     }
-    wasMenuOpen.current = isMenuOpen;
-  }, [isMenuOpen]);
+  }, [isMenuOpen])
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 701px)')
+    const closeMenuOnDesktop = (event) => {
+      if (event.matches) setIsMenuOpen(false)
+    }
+    desktopQuery.addEventListener?.('change', closeMenuOnDesktop)
+    return () => desktopQuery.removeEventListener?.('change', closeMenuOnDesktop)
+  }, [])
+
+  const closeMenu = () => setIsMenuOpen(false)
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-700 dark:bg-slate-950 dark:text-slate-300 font-sans selection:bg-cyan-200 selection:text-cyan-900 dark:selection:bg-cyan-900 dark:selection:text-cyan-50 print:bg-white print:text-slate-900">
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-md focus:bg-cyan-700 focus:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
-      >
-        Skip to main content
-      </a>
+    <div className="portfolio-shell">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
 
-      <header className="bg-white/85 dark:bg-slate-900/95 border-b border-slate-200 dark:border-slate-800 py-3 md:py-5 px-4 sm:px-12 lg:px-24 backdrop-blur-md sticky top-0 z-40 print:static print:bg-white print:text-slate-900 shadow-sm dark:shadow-none">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex justify-between items-center gap-4">
-            <div className="flex-1 min-w-0">
-              <h1 className="text-xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight pb-0.5">
-                Sam Degnan
-              </h1>
-              <p className="hidden md:block text-sm lg:text-base text-cyan-700 dark:text-cyan-400 mt-1 font-medium tracking-wide truncate">
-                Software Engineer | Mission-Critical Systems & AI Integration
-              </p>
-              <p className="md:hidden text-xs text-cyan-700 dark:text-cyan-400 mt-0.5 font-medium tracking-wide truncate">
-                Software Engineer
-              </p>
-            </div>
-
-            <div className="hidden md:flex items-center gap-4 shrink-0">
-              <nav
-                aria-label="Contact links"
-                className="flex flex-col items-start gap-1 text-sm font-medium"
-              >
-                {contactItems.map((item) => (
-                  <ContactLink key={item.short} item={item} className="py-0.5" />
-                ))}
-              </nav>
-              <div
-                className="hidden lg:block h-8 w-px bg-slate-300 dark:bg-slate-700"
-                aria-hidden="true"
-              />
-              <button
-                type="button"
-                onClick={() => setIsDark((prev) => !prev)}
-                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-                className="p-3 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0"
-              >
-                {isDark ? (
-                  <SunIcon className="w-5 h-5" />
-                ) : (
-                  <MoonIcon className="w-5 h-5" />
-                )}
-              </button>
-            </div>
-
-            <div className="flex md:hidden items-center gap-2 shrink-0">
-              <button
-                type="button"
-                onClick={() => setIsDark((prev) => !prev)}
-                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-                className="p-3 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              >
-                {isDark ? (
-                  <SunIcon className="w-5 h-5" />
-                ) : (
-                  <MoonIcon className="w-5 h-5" />
-                )}
-              </button>
-              <button
-                ref={hamburgerRef}
-                type="button"
-                onClick={() => setIsMenuOpen((prev) => !prev)}
-                aria-expanded={isMenuOpen}
-                aria-controls="mobile-menu"
-                aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-                className="p-3 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              >
-                {isMenuOpen ? (
-                  <XIcon className="w-5 h-5" />
-                ) : (
-                  <MenuIcon className="w-5 h-5" />
-                )}
-              </button>
-            </div>
+      <header className="site-header">
+        <div className="site-header-inner">
+          <a className="wordmark" href="#about" onClick={closeMenu} aria-label="Sam Degnan home">Sam Degnan<span className="wordmark-dot" aria-hidden="true" /></a>
+          <nav className="desktop-nav" aria-label="Primary navigation"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a></nav>
+          <div className="header-actions">
+            <div className="desktop-contact"><ContactLinks /></div>
+            <button className="theme-toggle" type="button" onClick={() => setIsDark((value) => !value)} aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}>{isDark ? <SunIcon className="icon-sm" /> : <MoonIcon className="icon-sm" />}</button>
+            <button ref={menuButtonRef} className="menu-toggle" type="button" onClick={() => setIsMenuOpen((value) => !value)} aria-expanded={isMenuOpen} aria-controls="mobile-navigation" aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}>{isMenuOpen ? <CloseIcon className="icon-sm" /> : <MenuIcon className="icon-sm" />}</button>
           </div>
-
-          <div
-            id="mobile-menu"
-            ref={menuRef}
-            aria-hidden={!isMenuOpen}
-            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-              isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-            }`}
-          >
-            <nav
-              aria-label="Contact links mobile"
-              className="flex flex-col gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 font-medium"
-            >
-              {contactItems.map((item) => (
-                <ContactLink
-                  key={item.short}
-                  item={item}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="py-3 text-base"
-                  tabIndex={isMenuOpen ? 0 : -1}
-                />
-              ))}
-            </nav>
-          </div>
+        </div>
+        <div id="mobile-navigation" className={`mobile-navigation ${isMenuOpen ? 'is-open' : ''}`} aria-hidden={!isMenuOpen} inert={!isMenuOpen}>
+          <nav aria-label="Mobile navigation"><a href="#work" onClick={closeMenu} tabIndex={isMenuOpen ? 0 : -1}>Work</a><a href="#experience" onClick={closeMenu} tabIndex={isMenuOpen ? 0 : -1}>Experience</a><a href="#skills" onClick={closeMenu} tabIndex={isMenuOpen ? 0 : -1}>Skills</a></nav>
+          <ContactLinks mobile isOpen={isMenuOpen} onNavigate={closeMenu} />
         </div>
       </header>
 
-      <main
-        id="main-content"
-        className="max-w-5xl mx-auto px-6 sm:px-12 lg:px-24 py-12 md:py-16 space-y-16 md:space-y-20"
-      >
-        <section
-          aria-labelledby="about-heading"
-          className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-12"
-        >
-          <div className="flex-1 w-full text-center md:text-left">
-            <h2
-              id="about-heading"
-              className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 pb-3 mb-6 text-left"
-            >
-              About Me
-            </h2>
-            <div className="bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xl text-left text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed space-y-4">
-              <p>
-                Software Engineer (B.S. from Iowa State) building cryptographic
-                software for first-responder communications at Motorola
-                Solutions.
-              </p>
-              <p>
-                I use AI-assisted development to architect secure AWS
-                infrastructure and embedded firmware, compressing delivery
-                cycles from months to days while maintaining mission-critical
-                security standards.
-              </p>
-              <p className="pt-2 text-slate-900 dark:text-slate-200 font-medium">
-                Relocating to Austin, TX and actively seeking new engineering
-                opportunities.
-              </p>
-            </div>
+      <main id="main-content">
+        <section id="about" className="hero-section" aria-labelledby="hero-heading">
+          <div className="hero-copy">
+            <p className="eyebrow"><span className="status-dot" aria-hidden="true" /> Software engineer focused on secure systems</p>
+            <h1 id="hero-heading">I build privacy boundaries, cloud control planes, and reliable delivery tools.</h1>
+            <p className="hero-lede">Sam Degnan is a software engineer working across cryptography, multi-cloud infrastructure, embedded systems, and developer tooling.</p>
+            <p className="hero-supporting">This is Sam Degnan's GitHub Pages portfolio, with independent projects that make the trust boundary, operational model, and limits of each system visible.</p>
+            <div className="hero-actions"><a className="button button-primary" href="#work">Explore the work <ArrowIcon className="icon-sm" /></a><a className="button button-secondary" href="/Sam-Degnan-Resume.pdf" download="Sam-Degnan-Resume.pdf">Download résumé <ArrowIcon className="icon-sm" /></a><a className="button button-tertiary" href="https://github.com/samueladegnan" target="_blank" rel="noopener noreferrer" aria-label="Visit Sam Degnan on GitHub, opens in a new tab">GitHub <ExternalIcon className="icon-sm" /></a></div>
           </div>
-
-          <div className="flex-shrink-0 flex justify-center mt-4 md:mt-12 w-full md:w-auto mb-8 md:mb-0">
-            <div className="relative">
-              <div
-                className="absolute inset-0 bg-cyan-200 dark:bg-cyan-900/20 rounded-full scale-110 -z-10 blur-md motion-reduce:blur-none"
-                aria-hidden="true"
-              />
-              <img
-                src={profilePic}
-                alt="Sam Degnan - Software Engineer at Motorola Solutions"
-                className="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full object-cover shadow-2xl border-4 border-slate-200 dark:border-slate-800"
-                loading="eager"
-              />
-            </div>
-          </div>
+          <aside className="profile-panel" aria-label="Profile summary">
+            <div className="profile-image-frame"><div className="profile-accent-shape" aria-hidden="true" /><img src={profilePic} alt="Sam Degnan" className="profile-image" width="420" height="520" /></div>
+            <div className="profile-caption"><p>Currently</p><strong>Software Engineer I</strong><span>Motorola Solutions</span><div><span>United States</span><span>Iowa State, B.S.</span></div></div>
+          </aside>
         </section>
 
-        <section aria-labelledby="projects-heading">
-          <h2
-            id="projects-heading"
-            className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 pb-3 mb-6"
-          >
-            Featured Projects
-          </h2>
-          <div className="grid grid-cols-1 gap-6">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className="relative bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-cyan-400 dark:hover:border-cyan-600 hover:shadow-xl transition-all shadow-lg group"
-              >
-                  <a
-                  href={project.link}
-                  aria-label={`Open ${project.title}`}
-                  className="absolute top-6 right-6 md:top-8 md:right-8 p-2 -m-2 text-slate-500 hover:text-cyan-700 dark:hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:rounded-sm transition-colors"
-                >
-                  <ExternalLinkIcon />
-                </a>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 pr-12">
-                  {project.title}
-                </h3>
-                <p className="text-xs md:text-sm font-mono text-cyan-800 dark:text-cyan-300 mt-2 mb-4 bg-cyan-100 dark:bg-cyan-950/40 inline-block px-3 py-1 rounded">
-                  {project.tech}
-                </p>
-                <p className="text-slate-700 dark:text-slate-300 mb-3 leading-relaxed">
-                  {project.overview}
-                </p>
-                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                  {project.value}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
+        <section className="principles-strip" aria-label="Engineering focus"><p>The common thread across the work</p><span>Privacy boundaries</span><span>Cloud lifecycle</span><span>Reliable delivery</span></section>
 
-        <section aria-labelledby="experience-heading">
-          <h2
-            id="experience-heading"
-            className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 pb-3 mb-6 text-left"
-          >
-            Professional Experience
-          </h2>
+        <section id="work" className="content-section work-section" aria-labelledby="work-heading"><SectionIntro id="work-heading" label="Selected work" title="Three projects I can explain end to end" description="Three GitHub projects across privacy, multi-cloud operations, and CI security." /><div className="project-grid">{projects.map((project) => <ProjectCard project={project} key={project.number} />)}</div></section>
 
-          <div className="bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xl text-left">
-            <div className="flex flex-col md:flex-row justify-between mb-6 border-b border-slate-200 dark:border-slate-800 pb-4">
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100">
-                  Software Engineer I
-                </h3>
-                <p className="text-cyan-700 dark:text-cyan-400 font-medium text-lg mt-1">
-                  Motorola Solutions
-                </p>
-              </div>
-              <span className="text-slate-500 dark:text-slate-400 font-mono mt-2 md:mt-0 text-sm md:text-base">
-                June 2023 - Present
-              </span>
-            </div>
+        <section id="experience" className="content-section experience-section" aria-labelledby="experience-heading"><SectionIntro id="experience-heading" label="Experience" title="Engineering close to the product" description="Secure product work for first-responder communications, from cryptography to release." /><div className="experience-layout"><div className="experience-intro"><p className="experience-period">June 2023 to present</p><h3>Software Engineer I</h3><p className="experience-company">Motorola Solutions</p></div><div className="experience-points"><div><span>01</span><p>Built secure cloud infrastructure and cryptographic software for systems where reliability and confidentiality matter.</p></div><div><span>02</span><p>Improved development workflows with AI-assisted tooling while keeping human review, testing, and security analysis in the loop.</p></div><div><span>03</span><p>Worked across Docker, Jenkins, Bitbucket CI, SonarQube, Klocwork, embedded firmware, and Conan release workflows.</p></div><div><span>04</span><p>Served as a Cyber Security Champion and helped new engineers become productive on a complex codebase.</p></div></div></div></section>
 
-            <ul className="list-disc list-outside ml-5 space-y-4 text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed marker:text-cyan-600 dark:marker:text-cyan-500">
-              <li>
-                <strong className="text-slate-900 dark:text-slate-100">
-                  Secure Enterprise Architecture:
-                </strong>{' '}
-                Architected secure AWS infrastructure (EC2, custom AMIs,
-                Secrets Manager) and engineered compliant cryptographic software
-                for mission-critical, first-responder systems.
-              </li>
-              <li>
-                <strong className="text-slate-900 dark:text-slate-100">
-                  AI-Driven Velocity:
-                </strong>{' '}
-                Spearheaded the adoption of AI-assisted workflows (Windsurf,
-                Claude Code, Gemini), accelerating project delivery by 75% by
-                compressing month-long development cycles into a single week.
-              </li>
-              <li>
-                <strong className="text-slate-900 dark:text-slate-100">
-                  DevOps & CI/CD:
-                </strong>{' '}
-                Modernized deployment pipelines by containerizing development
-                environments with Docker, managing Jenkins/Bitbucket CI/CD, and
-                driving down defect backlogs via SonarQube and Klocwork.
-              </li>
-              <li>
-                <strong className="text-slate-900 dark:text-slate-100">
-                  Embedded Systems & Release:
-                </strong>{' '}
-                Engineered high-reliability firmware for STM32 V8 boards and took
-                full ownership of end-to-end release management via Conan
-                packages to ensure stable production rollouts.
-              </li>
-              <li>
-                <strong className="text-slate-900 dark:text-slate-100">
-                  Technical Leadership & Mentorship:
-                </strong>{' '}
-                Selected as the designated Cyber Security Champion to advise
-                engineering leadership on security posture, while actively
-                mentoring incoming engineers to accelerate their technical
-                onboarding.
-              </li>
-            </ul>
-          </div>
-        </section>
+        <section id="skills" className="content-section skills-section" aria-labelledby="skills-heading"><SectionIntro id="skills-heading" label="Toolkit" title="Tools I use to make the system hold up" description="Languages, cryptography, cloud, embedded, and delivery tools used across the work." /><div className="skills-grid">{skillGroups.map((group) => <div className="skill-card" key={group.label}><h3>{group.label}</h3><div className="tag-list">{group.items.map((item) => <span className="tag" key={item}>{item}</span>)}</div></div>)}</div></section>
 
-        <section aria-labelledby="skills-heading">
-          <h2
-            id="skills-heading"
-            className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 pb-3 mb-6"
-          >
-            Technical Skills
-          </h2>
-          <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
-            The stack I use to design, build, and ship secure, mission-critical
-            systems.
-          </p>
-          <div className="overflow-x-auto bg-white dark:bg-slate-900/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-800">
-            <table className="w-full text-left border-collapse">
-              <caption className="sr-only">
-                Technical skills grouped by category
-              </caption>
-              <thead>
-                <tr className="bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                  <th
-                    className="py-5 px-6 font-bold text-slate-900 dark:text-slate-100 w-1/3"
-                    scope="col"
-                  >
-                    Category
-                  </th>
-                  <th
-                    className="py-5 px-6 font-bold text-slate-900 dark:text-slate-100"
-                    scope="col"
-                  >
-                    Technologies & Methodologies
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
-                {skills.map((skill) => (
-                  <tr
-                    key={skill.category}
-                    className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
-                  >
-                    <td className="py-4 px-6 font-semibold text-slate-900 dark:text-slate-200">
-                      {skill.category}
-                    </td>
-                    <td className="py-4 px-6 font-mono text-sm text-cyan-700 dark:text-cyan-200">
-                      {skill.items}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <section className="closing-section" aria-labelledby="closing-heading"><p className="section-label">Contact</p><h2 id="closing-heading">Let’s build something that holds up.</h2><p>I am interested in roles involving secure products, multi-cloud infrastructure, embedded software, and developer platforms where careful engineering has a visible effect.</p><a className="button button-primary" href="mailto:samueladegnan@gmail.com">Email Sam <ArrowIcon className="icon-sm" /></a></section>
       </main>
 
-      <footer className="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 text-slate-600 dark:text-slate-500 py-10 text-center text-sm print:hidden">
-        <p>© {new Date().getFullYear()} Sam Degnan.</p>
-      </footer>
+      <footer className="site-footer"><span>© {new Date().getFullYear()} Sam Degnan</span><p>Software engineer portfolio on GitHub Pages</p><div><a href="/Sam-Degnan-Resume.pdf" download="Sam-Degnan-Resume.pdf">Résumé <ArrowIcon className="icon-xs" /></a><a href="https://github.com/samueladegnan" target="_blank" rel="noopener noreferrer" aria-label="Visit Sam Degnan on GitHub, opens in a new tab">GitHub <ExternalIcon className="icon-xs" /></a><a href="#about">Back to top <ArrowIcon className="icon-xs footer-arrow" /></a></div></footer>
     </div>
-  );
+  )
 }

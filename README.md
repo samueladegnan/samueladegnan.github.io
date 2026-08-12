@@ -1,13 +1,34 @@
-# Hi, I'm Sam Degnan 👋
+# Sam Degnan
 
-**Software Engineer | Mission-Critical Systems, Embedded Architecture & AI Integration**
+Software engineer building security-minded systems across zero-knowledge privacy, post-quantum cryptography, multi-cloud infrastructure, embedded software, and developer tooling.
 
-I build secure, enterprise-grade software. Currently, that means cryptographic systems for first-responder communications at Motorola Solutions. I use AI-assisted development to architect secure AWS infrastructure and embedded firmware, compressing delivery cycles from months to days while maintaining mission-critical security standards.
+This repository contains the source for [samueladegnan.github.io](https://samueladegnan.github.io/), Sam Degnan's GitHub Pages software engineering portfolio. It documents the decisions and limits behind three independent projects:
 
----
+- [Zero-Knowledge Fitness Platform](https://samueladegnan.github.io/zk-fitness-platform/)
+- [SEEO Multi-Cloud Orchestrator](https://samueladegnan.github.io/seeo-aws-orchestrator/)
+- [AI CI/CD Security Guardrail](https://samueladegnan.github.io/ai-cicd-security-guardrail/)
 
-### 📫 Connect With Me
+## Local development
 
-*   **Portfolio:** [samueladegnan.github.io](https://samueladegnan.github.io)
-*   **LinkedIn:** [linkedin.com/in/sam-degnan](https://linkedin.com/in/sam-degnan)
-*   **Email:** samueladegnan@gmail.com
+```bash
+npm install
+npm run dev
+```
+
+Run the production checks with:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Portfolio proof
+
+The homepage links to the live project pages and includes a downloadable résumé. The projects cover client-owned workout data, post-quantum cryptography, multi-cloud lifecycle control, and CI security tooling.
+
+## Contact
+
+- [LinkedIn](https://linkedin.com/in/sam-degnan/)
+- [GitHub](https://github.com/samueladegnan)
+- [Résumé](https://samueladegnan.github.io/Sam-Degnan-Resume.pdf)
+- [Email](mailto:samueladegnan@gmail.com)
