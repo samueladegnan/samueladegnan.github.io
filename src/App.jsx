@@ -62,7 +62,7 @@ const contactItems = [
   { href: 'mailto:samueladegnan@gmail.com', label: 'Email Sam Degnan', text: 'Email', external: false },
   { href: 'https://linkedin.com/in/sam-degnan/', label: 'Open Sam Degnan on LinkedIn', text: 'LinkedIn', external: true },
   { href: 'https://github.com/samueladegnan', label: 'Open Sam Degnan on GitHub', text: 'GitHub', external: true },
-  { href: '/Sam-Degnan-Resume.pdf', label: 'Download Sam Degnan resume', text: 'Resume', external: false, download: true },
+  { href: '/Sam-Degnan-Resume.pdf', label: 'View Sam Degnan resume in browser', text: 'Resume', external: true },
 ]
 
 function ArrowIcon({ className = '' }) {
@@ -106,7 +106,7 @@ function ContactLinks({ mobile = false, onNavigate, isOpen = true }) {
   return (
     <div className={mobile ? 'mobile-contact-links' : 'contact-links'}>
       {contactItems.map((item) => (
-        <a key={item.text} href={item.href} download={item.download ? 'Sam-Degnan-Resume.pdf' : undefined} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined} onClick={onNavigate} aria-label={`${item.label}${item.external ? ', opens in a new tab' : ''}`} tabIndex={mobile && !isOpen ? -1 : undefined}>
+        <a key={item.text} href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined} onClick={onNavigate} aria-label={`${item.label}${item.external ? ', opens in a new tab' : ''}`} tabIndex={mobile && !isOpen ? -1 : undefined}>
           {item.text}
           {item.external && <ExternalIcon className="icon-xs" />}
         </a>
@@ -224,7 +224,7 @@ export default function App() {
             <h1 id="hero-heading">I build privacy boundaries, cloud control planes, and reliable delivery tools.</h1>
             <p className="hero-lede">Sam Degnan is a software engineer working across cryptography, multi-cloud infrastructure, embedded systems, and developer tooling.</p>
             <p className="hero-supporting">This is Sam Degnan's GitHub Pages portfolio, with independent projects that make the trust boundary, operational model, and limits of each system visible.</p>
-            <div className="hero-actions"><a className="button button-primary" href="#work">Explore the work <ArrowIcon className="icon-sm" /></a><a className="button button-secondary" href="/Sam-Degnan-Resume.pdf" download="Sam-Degnan-Resume.pdf">Download résumé <ArrowIcon className="icon-sm" /></a><a className="button button-tertiary" href="https://github.com/samueladegnan" target="_blank" rel="noopener noreferrer" aria-label="Visit Sam Degnan on GitHub, opens in a new tab">GitHub <ExternalIcon className="icon-sm" /></a></div>
+            <div className="hero-actions"><a className="button button-primary" href="#work">Explore the work <ArrowIcon className="icon-sm" /></a><a className="button button-secondary" href="/Sam-Degnan-Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Sam Degnan résumé in a new browser tab">View résumé <ExternalIcon className="icon-sm" /></a><a className="button button-tertiary" href="https://github.com/samueladegnan" target="_blank" rel="noopener noreferrer" aria-label="Visit Sam Degnan on GitHub, opens in a new tab">GitHub <ExternalIcon className="icon-sm" /></a></div>
           </div>
           <aside className="profile-panel" aria-label="Profile summary">
             <div className="profile-image-frame"><div className="profile-accent-shape" aria-hidden="true" /><img src={profilePic} alt="Sam Degnan" className="profile-image" width="420" height="520" /></div>
@@ -243,7 +243,7 @@ export default function App() {
         <section className="closing-section" aria-labelledby="closing-heading"><p className="section-label">Contact</p><h2 id="closing-heading">Let’s build something that holds up.</h2><p>I am interested in roles involving secure products, multi-cloud infrastructure, embedded software, and developer platforms where careful engineering has a visible effect.</p><a className="button button-primary" href="mailto:samueladegnan@gmail.com">Email Sam <ArrowIcon className="icon-sm" /></a></section>
       </main>
 
-      <footer className="site-footer"><span>© {new Date().getFullYear()} Sam Degnan</span><p>Software engineer portfolio on GitHub Pages</p><div><a href="/Sam-Degnan-Resume.pdf" download="Sam-Degnan-Resume.pdf">Résumé <ArrowIcon className="icon-xs" /></a><a href="https://github.com/samueladegnan" target="_blank" rel="noopener noreferrer" aria-label="Visit Sam Degnan on GitHub, opens in a new tab">GitHub <ExternalIcon className="icon-xs" /></a><a href="#about">Back to top <ArrowIcon className="icon-xs footer-arrow" /></a></div></footer>
+      <footer className="site-footer"><span>© {new Date().getFullYear()} Sam Degnan</span><p>Software engineer portfolio on GitHub Pages</p><div><a href="/Sam-Degnan-Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Sam Degnan résumé in a new browser tab">Résumé <ExternalIcon className="icon-xs" /></a><a href="https://github.com/samueladegnan" target="_blank" rel="noopener noreferrer" aria-label="Visit Sam Degnan on GitHub, opens in a new tab">GitHub <ExternalIcon className="icon-xs" /></a><a href="#about">Back to top <ArrowIcon className="icon-xs footer-arrow" /></a></div></footer>
     </div>
   )
 }

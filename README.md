@@ -24,7 +24,7 @@ npm run build
 
 ## Portfolio proof
 
-The homepage links to the live project pages and includes a downloadable résumé. The projects cover client-owned workout data, post-quantum cryptography, multi-cloud lifecycle control, and CI security tooling.
+The homepage links to the live project pages and opens the résumé in the browser's built-in PDF viewer, where it can be downloaded. The projects cover client-owned workout data, post-quantum cryptography, multi-cloud lifecycle control, and CI security tooling.
 
 ## Contact
 
