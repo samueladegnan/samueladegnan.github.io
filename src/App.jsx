@@ -1,55 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import profilePic from './assets/headshot.jpg'
+import { fallbackProjects, loadProjectMetadata } from './project-data.js'
 
-const projects = [
-  {
-    number: '01',
-    featured: true,
-    category: 'Privacy engineering',
-    title: 'Zero-Knowledge Fitness Platform',
-    summary: 'Browser-first fitness tracking with client-owned workout data and keys.',
-    notes: [
-      ['Build', 'IndexedDB, encrypted sync, ML-DSA login, ML-KEM key encapsulation, and Groth16.'],
-      ['Boundary', 'The proof covers the workout summary and payload binding, not encryption.'],
-    ],
-    stack: ['Vanilla JavaScript', 'PWA', 'IndexedDB', 'Web Crypto API', 'Argon2id', 'HKDF', 'AES-256-GCM', 'ML-KEM-768', 'ML-DSA-65', 'Circom', 'Groth16', 'Poseidon', 'Node.js', 'Express', 'PostgreSQL'],
-    link: 'https://samueladegnan.github.io/zk-fitness-platform/',
-    repo: 'https://github.com/samueladegnan/zk-fitness-platform',
-    tone: 'coral',
-    proofLabel: 'Stack',
-    proof: 'Vanilla JavaScript, Web Crypto, Circom, Poseidon, Node, Express, and PostgreSQL.',
-  },
-  {
-    number: '02',
-    category: 'Multi-cloud operations',
-    title: 'SEEO Multi-Cloud Orchestrator',
-    summary: 'Short-lived environment control across AWS, Azure, Google Cloud, and OCI.',
-    notes: [
-      ['Build', 'Rails, React, provider adapters, RBAC, OPA, Terraform, and TTL cleanup.'],
-      ['Scope', 'Demo uses mock mode with no cloud credentials or billable resources.'],
-    ],
-    stack: ['Ruby on Rails', 'React', 'AWS', 'Azure', 'Google Cloud', 'OCI', 'Terraform', 'OPA/Rego'],
-    link: 'https://samueladegnan.github.io/seeo-aws-orchestrator/',
-    repo: 'https://github.com/samueladegnan/seeo-aws-orchestrator',
-    tone: 'blue',
-    proof: 'Mock mode, Terraform, persisted state, retries, and CI security artifacts.',
-  },
-  {
-    number: '03',
-    category: 'Developer tooling',
-    title: 'AI CI/CD Security Guardrail',
-    summary: 'Python CLI and GitHub Action for reviewable security findings in CI.',
-    notes: [
-      ['Build', 'Parses SARIF, SonarQube, and cppcheck with context, mapping, and OPA gates.'],
-      ['Scope', 'A triage layer, not a SAST replacement or security guarantee.'],
-    ],
-    stack: ['Python', 'GitHub Actions', 'SARIF', 'OPA/Rego', 'Docker', 'SQLite'],
-    link: 'https://samueladegnan.github.io/ai-cicd-security-guardrail/',
-    repo: 'https://github.com/samueladegnan/ai-cicd-security-guardrail',
-    tone: 'green',
-    proof: 'Fixtures, browser demo, mock provider, SARIF output, and CI checks.',
-  },
-]
 
 const skillGroups = [
   { label: 'Languages and application code', items: ['C/C++', 'Python', 'Ruby on Rails', 'JavaScript', 'React', 'Node.js', 'SQL', 'Bash'] },
@@ -151,10 +103,21 @@ function ProjectCard({ project }) {
 }
 
 export default function App() {
+  const [projects, setProjects] = useState(fallbackProjects)
   const [isDark, setIsDark] = useState(getInitialTheme)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuButtonRef = useRef(null)
   const wasMenuOpen = useRef(false)
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    Promise.all(fallbackProjects.map((project) => loadProjectMetadata(project, controller.signal))).then((updatedProjects) => {
+      if (!controller.signal.aborted) setProjects(updatedProjects)
+    })
+
+    return () => controller.abort()
+  }, [])
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDark)
