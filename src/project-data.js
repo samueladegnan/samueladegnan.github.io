@@ -7,10 +7,10 @@ export const fallbackProjects = [
     featured: true,
     category: 'Privacy engineering',
     title: 'Zero-Knowledge Fitness Platform',
-    summary: 'Browser-first fitness tracking for sensitive health and fitness data, with client-owned keys and encrypted sync.',
+    summary: 'Privacy-first workout tracking for personal health data, with keys you control and encrypted sync.',
     notes: [
       ['Build', 'IndexedDB, encrypted sync, ML-DSA login, ML-KEM key encapsulation, and Groth16.'],
-      ['Boundary', 'Readable health and fitness data stays client-side. The proof covers the private summary and payload binding, not encryption.'],
+      ['Boundary', 'Readable health and fitness data stays on your device. The proof checks the private summary and payload binding, not encryption.'],
     ],
     stack: ['Vanilla JavaScript', 'PWA', 'IndexedDB', 'Web Crypto API', 'Argon2id', 'HKDF', 'AES-256-GCM', 'ML-KEM-768', 'ML-DSA-65', 'Circom', 'Groth16', 'Poseidon', 'Node.js', 'Express', 'PostgreSQL'],
     link: 'https://samueladegnan.github.io/zk-fitness-platform/',
@@ -18,7 +18,7 @@ export const fallbackProjects = [
     metadataUrl: 'https://raw.githubusercontent.com/samueladegnan/zk-fitness-platform/main/portfolio.json',
     tone: 'coral',
     proofLabel: 'Evidence',
-    proof: 'Client-owned health and fitness data, AES-256-GCM, ML-KEM-768, ML-DSA-65, Groth16, Docker, CI checks, and an automated security report.',
+    proof: 'Personal health and fitness data, AES-256-GCM, ML-KEM-768, ML-DSA-65, Groth16, Docker, CI checks, and an automated security report.',
   },
   {
     id: 'seeo-aws-orchestrator',
@@ -28,7 +28,7 @@ export const fallbackProjects = [
     summary: 'Policy-gated, short-lived environments across AWS, Azure, Google Cloud, and OCI, provisioned through Terraform.',
     notes: [
       ['Build', 'Rails and React coordinate provider adapters, reusable Terraform modules, RBAC, OPA/Rego policy checks, and TTL cleanup.'],
-      ['Scope', 'The public demo uses mock mode; it does not create cloud resources or require cloud credentials.'],
+      ['Scope', 'The public demo uses mock mode. It does not create cloud resources or need cloud credentials.'],
     ],
     stack: ['Ruby on Rails', 'React', 'AWS', 'Azure', 'Google Cloud', 'OCI', 'Terraform', 'Terraform modules', 'OPA/Rego'],
     link: 'https://samueladegnan.github.io/seeo-aws-orchestrator/',

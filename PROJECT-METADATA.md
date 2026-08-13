@@ -2,7 +2,7 @@
 
 Each project can own the copy used for its card on the main portfolio by adding a `portfolio.json` file to the root of its repository. The main portfolio reads that file from the repository's `main` branch after the page loads.
 
-The current local project data remains the baseline used for the initial render. If a project has no metadata file, the file is unavailable, or a field is invalid, only that project or field keeps the baseline copy. This keeps the homepage useful while projects are migrated one at a time.
+The current local project data remains the baseline used for the initial render. If a project has no metadata file, the file is unavailable, or a field is invalid, only that project or field keeps the baseline copy.
 
 ## Contract
 
@@ -20,7 +20,7 @@ The current local project data remains the baseline used for the initial render.
     },
     {
       "label": "Scope",
-      "text": "The public demo uses mock mode; it does not create cloud resources or require cloud credentials."
+      "text": "The public demo uses mock mode. It does not create cloud resources or need cloud credentials."
     }
   ],
   "stack": [
