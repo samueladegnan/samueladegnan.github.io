@@ -141,9 +141,6 @@ function ProjectCard({ project }) {
           {project.stack.map((item) => <span className="tag" key={item}>{item}</span>)}
         </div>
         <div className="project-links">
-          <a className="project-link" href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Read ${project.title} project page, opens in a new tab`}>
-            View project <ExternalIcon className="icon-sm" />
-          </a>
           <a className="project-source-link" href={project.repo} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source code on GitHub, opens in a new tab`}>
             Source <ExternalIcon className="icon-xs" />
           </a>
