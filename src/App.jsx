@@ -58,8 +58,10 @@ const skillGroups = [
   { label: 'Embedded and build systems', items: ['RTOS', 'STM32', 'BeagleBone', 'JTAG', 'I2C/SPI', 'UART', 'CMake', 'Conan'] },
 ]
 
+const emailWebHref = 'https://mail.google.com/mail/?view=cm&fs=1&to=samueladegnan%40gmail.com'
+
 const contactItems = [
-  { href: 'mailto:samueladegnan@gmail.com', label: 'Email Sam Degnan', text: 'Email', external: false },
+  { href: 'mailto:samueladegnan@gmail.com', label: 'Email Sam Degnan', text: 'Email', external: false, email: true },
   { href: 'https://linkedin.com/in/sam-degnan/', label: 'Open Sam Degnan on LinkedIn', text: 'LinkedIn', external: true },
   { href: 'https://github.com/samueladegnan', label: 'Open Sam Degnan on GitHub', text: 'GitHub', external: true },
   { href: '/Sam-Degnan-Resume.pdf', label: 'View Sam Degnan resume in browser', text: 'Resume', external: true },
@@ -97,7 +99,12 @@ function getInitialTheme() {
 function ContactLinks({ mobile = false, onNavigate, isOpen = true }) {
   return (
     <div className={mobile ? 'mobile-contact-links' : 'contact-links'}>
-      {contactItems.map((item) => (
+      {contactItems.map((item) => item.email ? (
+        <span className="contact-email-links" key={item.text}>
+          <a href={item.href} onClick={onNavigate} aria-label={item.label} tabIndex={mobile && !isOpen ? -1 : undefined}>{item.text}</a>
+          <a className="email-web-link" href={emailWebHref} target="_blank" rel="noopener noreferrer" onClick={onNavigate} aria-label="Open a Gmail compose window for Sam Degnan, opens in a new tab" tabIndex={mobile && !isOpen ? -1 : undefined}>Gmail <ExternalIcon className="icon-xs" /></a>
+        </span>
+      ) : (
         <a key={item.text} href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined} onClick={onNavigate} aria-label={`${item.label}${item.external ? ', opens in a new tab' : ''}`} tabIndex={mobile && !isOpen ? -1 : undefined}>
           {item.text}
           {item.external && <ExternalIcon className="icon-xs" />}
@@ -119,6 +126,7 @@ function SectionIntro({ id, label, title, description }) {
 
 function ProjectCard({ project }) {
   return (    <article className={`project-card project-card-${project.tone} ${project.featured ? 'project-card-featured' : ''}`}>
+      <a className="project-card-target" href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} project page, opens in a new tab`} />
       <div className="project-card-heading">
         <div className="project-index"><span>{project.number}</span><span>{project.category}</span></div>
         <h3>{project.title}</h3>
@@ -232,7 +240,7 @@ export default function App() {
 
         <section id="skills" className="content-section skills-section" aria-labelledby="skills-heading"><SectionIntro id="skills-heading" label="Toolkit" title="Tools I use to make the system hold up" description="Languages, cryptography, cloud, embedded, and delivery tools used across the work." /><div className="skills-grid">{skillGroups.map((group) => <div className="skill-card" key={group.label}><h3>{group.label}</h3><div className="tag-list">{group.items.map((item) => <span className="tag" key={item}>{item}</span>)}</div></div>)}</div></section>
 
-        <section className="closing-section" aria-labelledby="closing-heading"><p className="section-label">Contact</p><h2 id="closing-heading">Let’s build something that holds up.</h2><p>I am interested in roles involving secure products, multi-cloud infrastructure, embedded software, and developer platforms where careful engineering has a visible effect.</p><a className="button button-primary" href="mailto:samueladegnan@gmail.com">Email Sam <ArrowIcon className="icon-sm" /></a></section>
+        <section className="closing-section" aria-labelledby="closing-heading"><p className="section-label">Contact</p><h2 id="closing-heading">Let’s build something that holds up.</h2><p>I am interested in roles involving secure products, multi-cloud infrastructure, embedded software, and developer platforms where careful engineering has a visible effect.</p><a className="button button-primary" href={emailWebHref} target="_blank" rel="noopener noreferrer" aria-label="Open a Gmail compose window to email Sam Degnan">Email Sam <ExternalIcon className="icon-sm" /></a></section>
       </main>
 
       <footer className="site-footer"><span>© {new Date().getFullYear()} Sam Degnan</span><p>Software engineer portfolio on GitHub Pages</p><div><a href="/Sam-Degnan-Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Sam Degnan résumé in a new browser tab">Résumé <ExternalIcon className="icon-xs" /></a><a href="https://github.com/samueladegnan" target="_blank" rel="noopener noreferrer" aria-label="Visit Sam Degnan on GitHub, opens in a new tab">GitHub <ExternalIcon className="icon-xs" /></a><a href="#about">Back to top <ArrowIcon className="icon-xs footer-arrow" /></a></div></footer>

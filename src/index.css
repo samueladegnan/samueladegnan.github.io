@@ -173,6 +173,17 @@ button {
   gap: 1rem;
 }
 
+.contact-email-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.email-web-link {
+  color: var(--accent-dark) !important;
+  font-size: 0.68rem !important;
+}
+
 .contact-links a,
 .site-footer a {
   display: inline-flex;
@@ -506,14 +517,38 @@ main,
 }
 
 .project-card {
+  position: relative;
   display: flex;
   min-height: 430px;
   flex-direction: column;
   padding: 1.7rem;
+  cursor: pointer;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 0.75rem;
   transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.project-card-target {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.project-card > *:not(.project-card-target) {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.project-card > *:not(.project-card-target) a {
+  pointer-events: auto;
+}
+
+.project-card-target:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: -5px;
 }
 
 .project-card:hover {
