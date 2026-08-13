@@ -6,111 +6,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f7f4ed" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-    <title>Sam Degnan | Software Engineer Portfolio on GitHub Pages</title>
-    <meta name="description" content="Sam Degnan's GitHub Pages portfolio of software engineering projects in zero-knowledge privacy, multi-cloud infrastructure, cryptography, embedded systems, and secure CI/CD tooling." />
+    <title>Sam Degnan | Secure Systems and Cloud Infrastructure Engineer</title>
+    <meta name="description" content="Sam Degnan is a software engineer building secure systems across cryptography, privacy engineering, multi-cloud infrastructure, embedded software, and developer tooling." />
     <meta name="author" content="Sam Degnan" />
     <link rel="canonical" href="https://samueladegnan.github.io/" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Sam Degnan Portfolio" />
     <meta property="og:url" content="https://samueladegnan.github.io/" />
-    <meta property="og:title" content="Sam Degnan | Software Engineer Portfolio on GitHub Pages" />
-    <meta property="og:description" content="A GitHub Pages portfolio covering zero-knowledge privacy, cryptography, multi-cloud infrastructure, embedded systems, and secure CI/CD tooling." />
+    <meta property="og:title" content="Sam Degnan | Secure Systems and Cloud Infrastructure Engineer" />
+    <meta property="og:description" content="A software engineering portfolio covering cryptography, privacy engineering, multi-cloud infrastructure, embedded software, and secure developer tooling." />
     <meta property="og:image" content="https://samueladegnan.github.io/headshot-og.jpg" />
+    <meta property="og:image:secure_url" content="https://samueladegnan.github.io/headshot-og.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Sam Degnan, software engineer" />
     <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Sam" />
+    <meta property="profile:last_name" content="Degnan" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sam Degnan | Software Engineer Portfolio on GitHub Pages" />
-    <meta name="twitter:description" content="A GitHub Pages portfolio covering zero-knowledge privacy, cryptography, multi-cloud infrastructure, embedded systems, and secure CI/CD tooling." />
+    <meta name="twitter:title" content="Sam Degnan | Secure Systems and Cloud Infrastructure Engineer" />
+    <meta name="twitter:description" content="A software engineering portfolio covering cryptography, privacy engineering, multi-cloud infrastructure, embedded software, and secure developer tooling." />
     <meta name="twitter:image" content="https://samueladegnan.github.io/headshot-og.jpg" />
     <meta name="twitter:image:alt" content="Sam Degnan, software engineer" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        "name": "Sam Degnan Software Engineer Portfolio",
-        "url": "https://samueladegnan.github.io/",
-        "description": "Sam Degnan's software engineering portfolio on GitHub Pages, covering zero-knowledge privacy, post-quantum cryptography, multi-cloud infrastructure, embedded systems, and secure CI/CD tooling.",
-        "dateModified": "2026-08-11",
-        "mainEntity": {
-          "@type": "Person",
-          "name": "Sam Degnan",
-          "alternateName": "Sam Degnan software engineer portfolio",
-          "url": "https://samueladegnan.github.io/",
-          "image": "https://samueladegnan.github.io/headshot-og.jpg",
-          "jobTitle": "Software Engineer",
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Motorola Solutions"
-          },
-          "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "Iowa State University"
-          },
-          "sameAs": [
-            "https://github.com/samueladegnan",
-            "https://linkedin.com/in/sam-degnan/"
-          ],
-          "knowsAbout": [
-            "Secure software engineering",
-            "Zero-knowledge proofs",
-            "Post-quantum cryptography",
-            "Cryptography",
-            "Multi-cloud infrastructure",
-            "Embedded systems",
-            "Developer tooling",
-            "DevOps"
-          ]
-        },
-        "about": [
+        "@graph": [
           {
-            "@type": "CreativeWork",
-            "name": "Zero-Knowledge Fitness Platform",
-            "description": "A browser-first workout tracker using client-owned data, post-quantum cryptography, and a scoped Groth16 proof.",
-            "url": "https://samueladegnan.github.io/zk-fitness-platform/"
+            "@type": "ProfilePage",
+            "@id": "https://samueladegnan.github.io/#profile",
+            "name": "Sam Degnan Software Engineer Portfolio",
+            "url": "https://samueladegnan.github.io/",
+            "description": "Sam Degnan's software engineering portfolio on GitHub Pages, covering cryptography, privacy engineering, multi-cloud infrastructure, embedded software, and secure developer tooling.",
+            "dateModified": "2026-08-12",
+            "mainEntity": {
+              "@id": "https://samueladegnan.github.io/#person"
+            }
           },
           {
-            "@type": "CreativeWork",
-            "name": "SEEO Multi-Cloud Orchestrator",
-            "description": "A control plane for short-lived environments across AWS, Azure, Google Cloud, and OCI.",
-            "url": "https://samueladegnan.github.io/seeo-aws-orchestrator/"
+            "@type": "Person",
+            "@id": "https://samueladegnan.github.io/#person",
+            "name": "Sam Degnan",
+            "url": "https://samueladegnan.github.io/",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://samueladegnan.github.io/headshot-og.jpg"
+            },
+            "jobTitle": "Software Engineer",
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Software Engineer",
+              "occupationLocation": {
+                "@type": "Country",
+                "name": "United States"
+              }
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Motorola Solutions"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Iowa State University"
+            },
+            "sameAs": [
+              "https://github.com/samueladegnan",
+              "https://linkedin.com/in/sam-degnan/"
+            ],
+            "knowsAbout": [
+              "Secure software engineering",
+              "Privacy engineering",
+              "Zero-knowledge proofs",
+              "Post-quantum cryptography",
+              "Multi-cloud infrastructure",
+              "Embedded systems",
+              "Developer tooling",
+              "DevOps"
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://samueladegnan.github.io/#projects",
+            "name": "Sam Degnan portfolio projects",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@id": "https://samueladegnan.github.io/zk-fitness-platform/#project"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@id": "https://samueladegnan.github.io/seeo-aws-orchestrator/#project"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@id": "https://samueladegnan.github.io/ai-cicd-security-guardrail/#project"
+                }
+              }
+            ]
           },
           {
             "@type": "SoftwareApplication",
+            "@id": "https://samueladegnan.github.io/zk-fitness-platform/#project",
+            "name": "Zero-Knowledge Fitness Platform",
+            "description": "A browser-first workout tracker using client-owned data, post-quantum cryptography, and a scoped Groth16 proof.",
+            "url": "https://samueladegnan.github.io/zk-fitness-platform/",
+            "author": {
+              "@id": "https://samueladegnan.github.io/#person"
+            },
+            "codeRepository": "https://github.com/samueladegnan/zk-fitness-platform",
+            "applicationCategory": "Privacy software"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://samueladegnan.github.io/seeo-aws-orchestrator/#project",
+            "name": "SEEO Multi-Cloud Orchestrator",
+            "description": "A control plane for short-lived environments across AWS, Azure, Google Cloud, and OCI.",
+            "url": "https://samueladegnan.github.io/seeo-aws-orchestrator/",
+            "author": {
+              "@id": "https://samueladegnan.github.io/#person"
+            },
+            "codeRepository": "https://github.com/samueladegnan/seeo-aws-orchestrator",
+            "applicationCategory": "Cloud management software"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://samueladegnan.github.io/ai-cicd-security-guardrail/#project",
             "name": "AI CI/CD Security Guardrail",
             "description": "A Python CLI and GitHub Action for turning static-analysis findings into reviewable CI decisions.",
-            "url": "https://samueladegnan.github.io/ai-cicd-security-guardrail/"
-          }
-        ]
-      }
-    </script>
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Sam Degnan portfolio projects",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Zero-Knowledge Fitness Platform",
-            "url": "https://samueladegnan.github.io/zk-fitness-platform/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "SEEO Multi-Cloud Orchestrator",
-            "url": "https://samueladegnan.github.io/seeo-aws-orchestrator/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "AI CI/CD Security Guardrail",
-            "url": "https://samueladegnan.github.io/ai-cicd-security-guardrail/"
+            "url": "https://samueladegnan.github.io/ai-cicd-security-guardrail/",
+            "author": {
+              "@id": "https://samueladegnan.github.io/#person"
+            },
+            "codeRepository": "https://github.com/samueladegnan/ai-cicd-security-guardrail",
+            "applicationCategory": "Developer tool"
           }
         ]
       }

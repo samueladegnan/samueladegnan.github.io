@@ -22,6 +22,8 @@ npm run lint
 npm run build
 ```
 
+The production build pre-renders the React homepage into `dist/index.html` so crawlers receive the portfolio content without waiting for JavaScript. The build also validates the generated SEO metadata, structured data, canonical links, sitemap coverage, and static heading structure.
+
 ## Portfolio proof
 
 The homepage links to the live project pages and opens the résumé in the browser's built-in PDF viewer, where it can be downloaded. The projects cover client-owned workout data, post-quantum cryptography, multi-cloud lifecycle control, and CI security tooling.

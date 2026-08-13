@@ -90,16 +90,8 @@ function CloseIcon({ className = '' }) {
 }
 
 function getInitialTheme() {
-  if (typeof window === 'undefined') return false
-
-  try {
-    const storedTheme = window.localStorage.getItem('theme')
-    if (storedTheme) return storedTheme === 'dark'
-  } catch {
-    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false
-  }
-
-  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false
+  if (typeof document === 'undefined') return false
+  return document.documentElement.classList.contains('dark')
 }
 
 function ContactLinks({ mobile = false, onNavigate, isOpen = true }) {
@@ -207,7 +199,7 @@ export default function App() {
           <nav className="desktop-nav" aria-label="Primary navigation"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a></nav>
           <div className="header-actions">
             <div className="desktop-contact"><ContactLinks /></div>
-            <button className="theme-toggle" type="button" onClick={() => setIsDark((value) => !value)} aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}>{isDark ? <SunIcon className="icon-sm" /> : <MoonIcon className="icon-sm" />}</button>
+            <button className="theme-toggle" type="button" onClick={() => setIsDark((value) => !value)} aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'} suppressHydrationWarning>{isDark ? <SunIcon className="icon-sm" /> : <MoonIcon className="icon-sm" />}</button>
             <button ref={menuButtonRef} className="menu-toggle" type="button" onClick={() => setIsMenuOpen((value) => !value)} aria-expanded={isMenuOpen} aria-controls="mobile-navigation" aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}>{isMenuOpen ? <CloseIcon className="icon-sm" /> : <MenuIcon className="icon-sm" />}</button>
           </div>
         </div>
@@ -221,13 +213,13 @@ export default function App() {
         <section id="about" className="hero-section" aria-labelledby="hero-heading">
           <div className="hero-copy">
             <p className="eyebrow"><span className="status-dot" aria-hidden="true" /> Software engineer focused on secure systems</p>
-            <h1 id="hero-heading">I build privacy boundaries, cloud control planes, and reliable delivery tools.</h1>
+            <h1 id="hero-heading">I build secure systems across privacy engineering, cloud infrastructure, and developer tooling.</h1>
             <p className="hero-lede">Sam Degnan is a software engineer working across cryptography, multi-cloud infrastructure, embedded systems, and developer tooling.</p>
             <p className="hero-supporting">This is Sam Degnan's GitHub Pages portfolio, with independent projects that make the trust boundary, operational model, and limits of each system visible.</p>
             <div className="hero-actions"><a className="button button-primary" href="#work">Explore the work <ArrowIcon className="icon-sm" /></a><a className="button button-secondary" href="/Sam-Degnan-Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Sam Degnan résumé in a new browser tab">View résumé <ExternalIcon className="icon-sm" /></a><a className="button button-tertiary" href="https://github.com/samueladegnan" target="_blank" rel="noopener noreferrer" aria-label="Visit Sam Degnan on GitHub, opens in a new tab">GitHub <ExternalIcon className="icon-sm" /></a></div>
           </div>
           <aside className="profile-panel" aria-label="Profile summary">
-            <div className="profile-image-frame"><div className="profile-accent-shape" aria-hidden="true" /><img src={profilePic} alt="Sam Degnan" className="profile-image" width="420" height="520" /></div>
+            <div className="profile-image-frame"><div className="profile-accent-shape" aria-hidden="true" /><img src={profilePic} alt="Sam Degnan, software engineer" className="profile-image" width="420" height="520" loading="eager" decoding="async" fetchPriority="high" /></div>
             <div className="profile-caption"><p>Currently</p><strong>Software Engineer I</strong><span>Motorola Solutions</span><div><span>United States</span><span>Iowa State, B.S.</span></div></div>
           </aside>
         </section>
