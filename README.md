@@ -22,7 +22,7 @@ npm run lint
 npm run build
 ```
 
-The production build pre-renders the React homepage into `dist/index.html` so crawlers receive the portfolio content without waiting for JavaScript. The build also validates the generated SEO metadata, structured data, canonical links, sitemap coverage, and static heading structure.
+The production build pre-renders the React homepage into `dist/index.html` so crawlers receive the portfolio content without waiting for JavaScript. GitHub Pages deploys the `dist` artifact directly from the `main` branch through the repository's Pages environment. The build also validates the generated SEO metadata, structured data, canonical links, sitemap coverage, and static heading structure.
 
 Project cards use a project-owned `portfolio.json` contract when one is available, while keeping the local card data as a per-project baseline during migration. See [PROJECT-METADATA.md](PROJECT-METADATA.md) for the schema and update flow.
 
